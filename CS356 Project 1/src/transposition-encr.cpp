@@ -6,11 +6,14 @@
  */
 // my first program in C++
 #include <iostream>
+#include <fstream>
 #include <string>
 
 using namespace std;
 string k1;
 string k2;
+string textfile;
+string plaintext;
 
 bool removeChar(char c) {
 	if (isalpha(c)) {
@@ -31,6 +34,19 @@ string parseKey(string key) {
 	}
 	return key;
 }
+bool readPlaintext(string textfile) {
+	string line;
+	ifstream myfile(textfile.c_str());
+	if (myfile.is_open()) {
+		while (getline(myfile,line)) {
+			plaintext += line;
+	    }
+		myfile.close();
+	}else {
+		return false;
+	}
+	return true;
+}
 
 
 int main() {
@@ -49,5 +65,9 @@ int main() {
 		  "English alphabet and must not contain duplicate characters. Please enter a valid key.\n";
 		cin >> k1;
 	}
-	cout << "Second key accepted\n";
+	cout << "Second key accepted\n" << "Now please enter the name of a text file to be encrypted.";
+	cin >> textfile;
+	if (readPlaintext(textfile)) {
+		cout << plaintext <<'\n';
+	}
 }
