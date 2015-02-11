@@ -7,16 +7,40 @@
 // my first program in C++
 #include <iostream>
 #include <string>
+#include <algorithm>
+#include <bitset>
 
 using namespace std;
+string k1;
+string k2;
+
+bool removeChar(char c) {
+	if (isalpha(c)) {
+		return false;
+	}
+	return true;
+}
+bool validateKey(string key) {
+
+	/*string tempkey = key;
+	sort(key.begin(), key.end());
+	key.erase(remove_if(key.begin(), key.end(), removeChar), key.end());
+	key.erase(unique(key.begin(), key.end()), key.end());
+	cout << key << "\n";
+	if (key.length() >= 10) {
+
+	}*/
+	//return true;
+}
+
 
 int main() {
-	string k1;
-	string k2;
-	cout << "Please enter 2 10 character keys. The keys must contain only letters from the "
+	cout << "Please enter a 10 character key. The key must contain only letters from the "
 		  "English alphabet and must not contain duplicate characters.";
 	cin >> k1;
-	cin >> k2;
-	cout << "k1: " << k1 << "\n";
-	cout << "k2: " << k2 << "\n";
+	validateKey(k1);
+	//if (k1.length() < 10) {
+	//	cout << "Please enter a larger key" << '\n';
+	//}
+	//cin >> k2;
 }
