@@ -7,8 +7,6 @@
 // my first program in C++
 #include <iostream>
 #include <string>
-#include <algorithm>
-#include <bitset>
 
 using namespace std;
 string k1;
