@@ -20,17 +20,18 @@ bool removeChar(char c) {
 	}
 	return true;
 }
-bool validateKey(string key) {
+string parseKey(string key) {
+	string tempkey = "";
+	size_t found;
+	int keyLength = key.length();
 
-	/*string tempkey = key;
-	sort(key.begin(), key.end());
-	key.erase(remove_if(key.begin(), key.end(), removeChar), key.end());
-	key.erase(unique(key.begin(), key.end()), key.end());
-	cout << key << "\n";
-	if (key.length() >= 10) {
-
-	}*/
-	//return true;
+	for (int i = 0; i < keyLength; i++) {
+		found = tempkey.find(key[i]);
+		if (found == string::npos && isalpha(key[i])) {
+			tempkey += key[i];
+		}
+	}
+	return key;
 }
 
 
@@ -38,7 +39,7 @@ int main() {
 	cout << "Please enter a 10 character key. The key must contain only letters from the "
 		  "English alphabet and must not contain duplicate characters.";
 	cin >> k1;
-	validateKey(k1);
+	parseKey(k1);
 	//if (k1.length() < 10) {
 	//	cout << "Please enter a larger key" << '\n';
 	//}
