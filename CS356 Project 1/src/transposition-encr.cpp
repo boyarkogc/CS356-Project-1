@@ -8,6 +8,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 string k1;
@@ -32,7 +33,9 @@ string parseKey(string key) {
 			tempkey += key[i];
 		}
 	}
-	return key;
+	transform(tempkey.begin(), tempkey.end(),tempkey.begin(), ::toupper);
+	cout << tempkey.substr(0,10);
+	return tempkey.substr(0,10);
 }
 bool readPlaintext(string textfile) {
 	string line;
@@ -47,25 +50,41 @@ bool readPlaintext(string textfile) {
 	}
 	return true;
 }
+void encrypt(string k1, string k2, string plaintext) {
+
+}
 
 
 int main() {
+	string parseTemp;
+
+	//Ask user for first key and sanitize that key
 	cout << "Please enter a 10 character key. The key must contain only letters from the "
 		  "English alphabet and must not contain duplicate characters.\n";
 	cin >> k1;
-	while (parseKey(k1).length() <= 10) {
+	parseTemp = parseKey(k1);
+	while (parseTemp.length() < 10) {
 		cout << "The key must be at least 10 characters long. The key must contain only letters from the "
 		  "English alphabet and must not contain duplicate characters. Please enter a valid key.\n";
 		cin >> k1;
+		parseTemp = parseKey(k1);
 	}
+	k1 = parseTemp;
+
+	//Ask user for second key and sanitize that key
 	cout << "First key accepted.\n" << "Now please enter a second key, satisfying the same criteria.\n";
 	cin >> k2;
-	while (parseKey(k1).length() <= 10) {
+	parseTemp = parseKey(k2);
+	while (parseTemp.length() < 10) {
 		cout << "The key must be at least 10 characters long. The key must contain only letters from the "
 		  "English alphabet and must not contain duplicate characters. Please enter a valid key.\n";
-		cin >> k1;
+		cin >> k2;
+		parseTemp = parseKey(k2);
 	}
-	cout << "Second key accepted\n" << "Now please enter the name of a text file to be encrypted.";
+	k2 = parseTemp;
+
+	//ask user for filename containing plaintext
+	cout << "Second key accepted\n" << "Now please enter the name of a text file to be encrypted.\n";
 	cin >> textfile;
 	if (readPlaintext(textfile)) {
 		cout << plaintext <<'\n';
