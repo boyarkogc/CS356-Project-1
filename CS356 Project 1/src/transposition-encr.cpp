@@ -37,11 +37,19 @@ string parseKey(string key) {
 
 int main() {
 	cout << "Please enter a 10 character key. The key must contain only letters from the "
-		  "English alphabet and must not contain duplicate characters.";
+		  "English alphabet and must not contain duplicate characters.\n";
 	cin >> k1;
-	parseKey(k1);
-	//if (k1.length() < 10) {
-	//	cout << "Please enter a larger key" << '\n';
-	//}
-	//cin >> k2;
+	while (parseKey(k1).length() <= 10) {
+		cout << "The key must be at least 10 characters long. The key must contain only letters from the "
+		  "English alphabet and must not contain duplicate characters. Please enter a valid key.\n";
+		cin >> k1;
+	}
+	cout << "First key accepted.\n" << "Now please enter a second key, satisfying the same criteria.\n";
+	cin >> k2;
+	while (parseKey(k1).length() <= 10) {
+		cout << "The key must be at least 10 characters long. The key must contain only letters from the "
+		  "English alphabet and must not contain duplicate characters. Please enter a valid key.\n";
+		cin >> k1;
+	}
+	cout << "Second key accepted\n";
 }
