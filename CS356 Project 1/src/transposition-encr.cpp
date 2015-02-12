@@ -34,7 +34,7 @@ string parseKey(string key) {
 		}
 	}
 	transform(tempkey.begin(), tempkey.end(),tempkey.begin(), ::toupper);
-	cout << tempkey.substr(0,10);
+	cout << tempkey.substr(0,10) << '\n';
 	return tempkey.substr(0,10);
 }
 bool readPlaintext(string textfile) {
